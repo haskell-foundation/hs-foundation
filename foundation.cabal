@@ -85,6 +85,7 @@ library
                      Foundation.String.Builder
                      Foundation.IO
                      Foundation.IO.FileMap
+                     Foundation.IO.Handle
                      Foundation.IO.Terminal
                      Foundation.VFS
                      Foundation.VFS.Path
@@ -144,6 +145,7 @@ library
                      Foundation.Conduit.Internal
                      Foundation.Numerical.Floating
                      Foundation.IO.File
+                     Foundation.IO.Handle.Common
                      Foundation.Monad.MonadIO
                      Foundation.Monad.Exception
                      Foundation.Monad.Transformer
@@ -177,11 +179,13 @@ library
     exposed-modules: Foundation.System.Bindings.Windows
     other-modules:   Foundation.Foreign.MemoryMap.Windows
                      Foundation.System.Entropy.Windows
+                     Foundation.IO.Handle.Windows
   else
     exposed-modules: Foundation.System.Bindings.Posix
                      Foundation.System.Bindings.PosixDef
     other-modules:   Foundation.Foreign.MemoryMap.Posix
                      Foundation.System.Entropy.Unix
+                     Foundation.IO.Handle.Posix
   if os(linux)
     exposed-modules: Foundation.System.Bindings.Linux
   if os(osx)

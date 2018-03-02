@@ -32,14 +32,21 @@ module Foundation.VFS.FilePath
     , unsafeFilePath
     , unsafeFileName
     , extension
+
+      -- * C interaction
+    , withCFilePath
     ) where
 
 import Basement.Compat.Base
 import Basement.Compat.Semigroup
 import Foundation.Collection
 import Foundation.Array
+import Foundation.Array.Internal
 import Foundation.String (Encoding(..), ValidationFailure, toBytes, fromBytes, String)
 import Foundation.VFS.Path(Path(..))
+
+import System.Posix.Internals (CFilePath)
+import Foreign.Ptr (castPtr)
 
 import qualified Data.List
 -- ------------------------------------------------------------------------- --
@@ -256,3 +263,14 @@ extension (FileName fn) = case splitOn (\c -> c == 0x2E) fn of
                             []  -> Nothing
                             [_] -> Nothing
                             xs  -> Just $ FileName $ last $ nonEmpty_ xs
+
+-- | Create a C FilePath
+withCFilePath :: FilePath -> (CFilePath -> IO a) -> IO a
+withCFilePath fp f =
+#ifdef mingw32_HOST_OS
+    withPtr (toBytes UTF16 s) (f . castPtr)
+#else
+    withPtr (toBytes UTF8 s) (f . castPtr)
+#endif
+  where
+    s = filePathToString fp
