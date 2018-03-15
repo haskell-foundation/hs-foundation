@@ -21,6 +21,7 @@ build: ghc-8.4 checkbounds experimental allowed-failure gaugedep extradep=vector
 # packages
 package: foundation/
 package: basement/
+package: sys/
 
 # extra builds
 hlint: allowed-failure

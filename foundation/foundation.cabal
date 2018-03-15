@@ -195,7 +195,6 @@ library
                       TypeFamilies
                       BangPatterns
                       DeriveDataTypeable
-
   if impl(ghc < 8.0)
     buildable: False
   else
@@ -204,7 +203,9 @@ library
     if os(windows)
       build-depends: Win32
 
+  -- foundation internal dependencies
   build-depends: basement == 0.0.7
+  build-depends: sys == 0.0.0
 
   -- FIXME add suport for armel mipsel
   --  CPP-options: -DARCH_IS_LITTLE_ENDIAN

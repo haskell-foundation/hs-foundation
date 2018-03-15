@@ -3,5 +3,7 @@ packages:
 - location: foundation/
 - location: basement/
   extra-dep: true
+- location: sys/
+  extra-dep: true
 extra-deps:
 - gauge-0.2.1

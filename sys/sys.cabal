@@ -1,0 +1,58 @@
+name:           sys
+version:        0.0.0
+synopsis:       Operating System layer for foundation
+description:    Please see the README on Github at <https://github.com/haskell-foundation/foundation#readme>
+category:       System
+homepage:       https://github.com/haskell-foundation/foundation#readme
+bug-reports:    https://github.com/haskell-foundation/foundation/issues
+author:         Vincent Hanquez
+maintainer:     vincent@snarc.org
+copyright:      2017-2018 Foundation Maintainers
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+source-repository head
+  type: git
+  location: https://github.com/haskell-foundation/foundation
+
+library
+  hs-source-dirs:
+      ./.
+  if impl(ghc < 8.0)
+    buildable: False
+  build-depends:
+      base
+    , basement
+  -- Windows Or Posix
+  if os(windows)
+    exposed-modules:
+      SysDep.Windows
+  else
+    exposed-modules:
+      SysDep.Posix
+    other-modules:
+      SysDep.Posix.Constants
+      SysDep.Posix.Functions
+      SysDep.Posix.File
+      SysDep.Posix.Directory
+      SysDep.Posix.Memory
+      SysDep.Posix.Terminal
+      SysDep.Posix.Types
+  default-language: Haskell2010
+
+  -- individual OS
+  if os(linux)
+    exposed-modules:
+      SysDep.Linux
+      SysDep.Linux.Inotify
+    other-modules:
+      SysDep.Linux.Constants
+      SysDep.Linux.Types
+  if os(osx)
+    exposed-modules:
+      SysDep.MacOS
+      SysDep.MacOS.MachTime
+    other-modules:
+      SysDep.MacOS.Constants
