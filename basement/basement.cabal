@@ -156,6 +156,7 @@ library
   else
     cpp-options: -DARCH_IS_UNKNOWN_ENDIAN
   include-dirs:      cbits
-  c-sources:         cbits/foundation_mem.c
-  if impl(ghc < 8.2)
-    c-sources:       cbits/basement_rts.c
+  if !os(ghcjs)
+    c-sources:         cbits/foundation_mem.c
+    if impl(ghc < 8.2)
+      c-sources:       cbits/basement_rts.c

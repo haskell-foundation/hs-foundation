@@ -185,10 +185,10 @@ library
                      Foundation.System.Bindings.PosixDef
     other-modules:   Foundation.Foreign.MemoryMap.Posix
                      Foundation.System.Entropy.Unix
-  if os(linux)
-    exposed-modules: Foundation.System.Bindings.Linux
-  if os(osx)
-    exposed-modules: Foundation.System.Bindings.Macos
+  -- if !os(ghcjs) && os(linux)
+  --   exposed-modules: Foundation.System.Bindings.Linux
+  -- if !os(ghcjs) && os(osx)
+  --   exposed-modules: Foundation.System.Bindings.Macos
 
   default-extensions: NoImplicitPrelude
                       RebindableSyntax
