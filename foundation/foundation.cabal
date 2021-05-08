@@ -196,7 +196,7 @@ library
                       BangPatterns
                       DeriveDataTypeable
 
-  if impl(ghc < 8.0) || impl(ghcjs)
+  if impl(ghc < 8.0)
     buildable: False
   else
     build-depends:   base
