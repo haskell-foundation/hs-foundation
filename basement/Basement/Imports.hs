@@ -12,6 +12,7 @@ module Basement.Imports
     , (Prelude.$!)
     , (Prelude.&&)
     , (Prelude.||)
+    , (Data.Ratio.%)
     , (Control.Category..)
     , (Control.Applicative.<$>)
     , Prelude.not
@@ -95,6 +96,7 @@ import qualified Data.Data
 import qualified Data.Typeable
 import qualified Data.Word
 import qualified Data.Int
+import qualified Data.Ratio
 import qualified Basement.Compat.IsList
 import qualified Basement.Compat.Natural
 import qualified Basement.Compat.NumLiteral
